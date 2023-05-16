@@ -29,9 +29,10 @@ export default function IndexPage() {
   const [loaded, setLoaded] = useState(true);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  const [response, setResponse] = useState<String>("");
+  const [story, setStory] = useState<String>("");
   const [audioSrc, setAudioSrc] = useState("");
   const [audio, setAudio] = useState(null);
+  const [showAudio, setShowAudio] = useState(false);
 
   useEffect(() => {
     async function getVoices() {
@@ -52,34 +53,32 @@ export default function IndexPage() {
     getVoices();
   }, []);
 
-  const prompt = `Create a 400 word personalised bedtime story for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
+  const prompt = `Create a 10 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
+  useEffect(() => {
+    async function generateAudio() {
+      const response = await fetch("/api/elevenlabs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: story,
+          voice: "21m00Tcm4TlvDq8ikWAM",
+        }),
+      });
 
-  const generateAudio = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setResponse("");
-    setLoading(true);
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
 
-    const response = await fetch("/api/elevenlabs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: "hello world",
-        voice: "21m00Tcm4TlvDq8ikWAM",
-      }),
-    });
+      const { file } = await response.json();
 
-    if (!response.ok) {
-      throw new Error("Something went wrong");
+      setAudio(file);
     }
+    generateAudio();
+  }, [showAudio]);
 
-    const { file } = await response.json();
-
-    setAudio(file);
-  };
-
-  const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const generateStory = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // setResponse("");
     // setLoading(true);
@@ -112,9 +111,13 @@ export default function IndexPage() {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
+      setStory((prev) => prev + chunkValue);
     }
-    // setLoading(false);
+
+    if (done) {
+      console.log("Stream complete");
+      setShowAudio(true);
+    }
   };
 
   return (
@@ -181,7 +184,7 @@ export default function IndexPage() {
               )}
               {!loading ? (
                 <Button
-                  onClick={(e) => generateAudio(e)}
+                  onClick={(e) => generateStory(e)}
                   className="mt-4 bg-fuchsia-500 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
                 >
                   <BookOpen className="mr-2 h-4 w-4" /> Generate a story
@@ -199,22 +202,18 @@ export default function IndexPage() {
             </div>
           </form>
 
-          {audio && (
+          {showAudio && (
             <div>
               <h2>Audio Player</h2>
               <audio autoPlay controls src={`audio/${audio}`} />
             </div>
           )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
-            {response ? (
-              <div className="flex space-x-4 mt-10 text-left">
-                <p className="p-10 text-2xl text-left whitespace-pre-wrap">
-                  {response}
-                </p>
-              </div>
-            ) : (
-              <div></div>
-            )}
+            <div className="flex space-x-4 mt-10 text-left">
+              <p className="p-10 text-2xl text-left whitespace-pre-wrap">
+                {story}
+              </p>
+            </div>
           </div>
         </section>
       </div>
