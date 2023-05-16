@@ -22,10 +22,10 @@ import { useState, useEffect } from "react";
 
 export default function IndexPage() {
   const [nameInput, setNameInput] = useState("");
-  const [ageInput, setAgeInput] = useState(5);
+  const [ageInput, setAgeInput] = useState<number>(0);
   const [interestInput, setInterestInput] = useState("");
   const [wantsAudio, setWantsAudio] = useState(false);
-  const [voices, setVoices] = useState([]);
+  const [voices, setVoices] = useState<any[]>([]);
   const [loaded, setLoaded] = useState(true);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
@@ -114,7 +114,7 @@ export default function IndexPage() {
                   type="number"
                   name="age"
                   value={ageInput}
-                  onChange={(e) => setAgeInput(e.target.value)}
+                  onChange={(e) => setAgeInput(parseInt(e.target.value, 10))}
                 />
               </div>
               <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
