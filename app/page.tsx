@@ -122,7 +122,9 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="text-2xl ml-8 my-4">Personalised bedtime stories</h1>
+      <h1 className="text-2xl text-center ml-8 my-4">
+        Personalised bedtime stories
+      </h1>
       <div className="flex flex-col mx-auto ml-4 mr-4">
         <section className="mt-4 ">
           <form>

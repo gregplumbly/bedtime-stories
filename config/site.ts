@@ -2,8 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Bedtime Genius",
-  description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+  description: "Bedtime stories your child will love",
   mainNav: [
     {
       title: "Home",
