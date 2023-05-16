@@ -22,7 +22,7 @@ import { useState, useEffect } from "react";
 
 export default function IndexPage() {
   const [nameInput, setNameInput] = useState("");
-  const [ageInput, setAgeInput] = useState<number>(0);
+  const [ageInput, setAgeInput] = useState<number>(5);
   const [interestInput, setInterestInput] = useState("");
   const [wantsAudio, setWantsAudio] = useState(false);
   const [voices, setVoices] = useState<any[]>([]);
