@@ -53,7 +53,7 @@ export default function IndexPage() {
     getVoices();
   }, []);
 
-  const prompt = `Create a 10 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
+  const prompt = `Create a 500 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
   useEffect(() => {
     async function generateAudio() {
       const response = await fetch("/api/elevenlabs", {
@@ -156,7 +156,7 @@ export default function IndexPage() {
                   onChange={(e) => setInterestInput(e.target.value)}
                 />
               </div>
-              <div className="flex items-center space-x-2 mt-2">
+              {/* <div className="flex items-center space-x-2 mt-2">
                 <Switch
                   id="wantsAudio"
                   checked={wantsAudio}
@@ -165,8 +165,8 @@ export default function IndexPage() {
                 <Label htmlFor="airplane-mode">
                   AI synthesized voice to read the story?{" "}
                 </Label>
-              </div>
-              {wantsAudio && (
+              </div> */}
+              {/* {wantsAudio && (
                 <div className="flex items-center space-x-2 mt-2">
                   <Select>
                     <SelectTrigger className="">
@@ -181,7 +181,7 @@ export default function IndexPage() {
                     </SelectContent>
                   </Select>
                 </div>
-              )}
+              )} */}
               {!loading ? (
                 <Button
                   onClick={(e) => generateStory(e)}
@@ -202,12 +202,12 @@ export default function IndexPage() {
             </div>
           </form>
 
-          {showAudio && (
+          {/* {showAudio && (
             <div>
               <h2>Audio Player</h2>
               <audio autoPlay controls src={`audio/${audio}`} />
             </div>
-          )}
+          )} */}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
             <div className="flex space-x-4 mt-10 text-left">
               <p className="p-10 text-2xl text-left whitespace-pre-wrap">
