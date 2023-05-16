@@ -92,11 +92,9 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="text-5xl text-center my-4">
-        Personalised bedtime stories
-      </h1>
-      <div className="flex justify-between">
-        <section className="w-1/4 mt-4 ml-8">
+      <h1 className="text-2xl ml-8 my-4">Personalised bedtime stories</h1>
+      <div className="flex flex-col mx-auto ml-4 mr-4">
+        <section className="mt-4 ">
           <form>
             <div className="grid w-full max-w-sm items-center gap-1.5 ">
               <Label htmlFor="name">Child's name</Label>
@@ -157,7 +155,7 @@ export default function IndexPage() {
               {!loading ? (
                 <Button
                   onClick={(e) => generateResponse(e)}
-                  className="mt-4 bg-fuchsia-500 border-b-4 border-r-4 border-black rounded-lg shadow-lg place-self-end"
+                  className="mt-4 bg-fuchsia-500 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
                 >
                   <BookOpen className="mr-2 h-4 w-4" /> Generate a story
                 </Button>
@@ -173,18 +171,18 @@ export default function IndexPage() {
               )}
             </div>
           </form>
+          <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
+            {response ? (
+              <div className="flex space-x-4 mt-10 text-left">
+                <p className="p-10 text-2xl text-left whitespace-pre-wrap">
+                  {response}
+                </p>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </section>
-        <div className="w-2/3 mr-8 flex flex-col h-screen border rounded-lg">
-          {response ? (
-            <div className="flex space-x-4 mt-10 text-left">
-              <p className="p-10 text-2xl text-left whitespace-pre-wrap">
-                {response}
-              </p>
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
       </div>
     </>
     //   <Checkbox />
