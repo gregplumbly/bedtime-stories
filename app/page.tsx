@@ -30,6 +30,8 @@ export default function IndexPage() {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<String>("");
+  const [audioSrc, setAudioSrc] = useState("");
+  const [audio, setAudio] = useState(null);
 
   useEffect(() => {
     async function getVoices() {
@@ -52,12 +54,37 @@ export default function IndexPage() {
 
   const prompt = `Create a 400 word personalised bedtime story for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
 
-  const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const generateAudio = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setResponse("");
     setLoading(true);
 
-    const response = await fetch("/api/generate", {
+    const response = await fetch("/api/elevenlabs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: "hello world",
+        voice: "21m00Tcm4TlvDq8ikWAM",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
+
+    const { file } = await response.json();
+
+    setAudio(file);
+  };
+
+  const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // setResponse("");
+    // setLoading(true);
+
+    const response = await fetch("/api/generate-story", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +114,7 @@ export default function IndexPage() {
       const chunkValue = decoder.decode(value);
       setResponse((prev) => prev + chunkValue);
     }
-    setLoading(false);
+    // setLoading(false);
   };
 
   return (
@@ -154,7 +181,7 @@ export default function IndexPage() {
               )}
               {!loading ? (
                 <Button
-                  onClick={(e) => generateResponse(e)}
+                  onClick={(e) => generateAudio(e)}
                   className="mt-4 bg-fuchsia-500 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
                 >
                   <BookOpen className="mr-2 h-4 w-4" /> Generate a story
@@ -171,6 +198,13 @@ export default function IndexPage() {
               )}
             </div>
           </form>
+
+          {audio && (
+            <div>
+              <h2>Audio Player</h2>
+              <audio autoPlay controls src={`audio/${audio}`} />
+            </div>
+          )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
             {response ? (
               <div className="flex space-x-4 mt-10 text-left">
