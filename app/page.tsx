@@ -15,12 +15,14 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/react";
 import { Check } from "lucide-react";
 import { BookOpen } from "lucide-react";
+import type { AppProps } from "next/app";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-export default function IndexPage() {
+export default function IndexPage({ Component, pageProps }: AppProps) {
   const [nameInput, setNameInput] = useState("");
   const [ageInput, setAgeInput] = useState<number>(5);
   const [interestInput, setInterestInput] = useState("");
@@ -219,6 +221,7 @@ export default function IndexPage() {
           </div>
         </section>
       </div>
+      <Analytics />
     </>
     //   <Checkbox />
   );
