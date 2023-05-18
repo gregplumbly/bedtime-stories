@@ -204,12 +204,12 @@ export default function IndexPage() {
             </div>
           </form>
 
-          {/* {showAudio && (
+          {showAudio && (
             <div>
               <h2>Audio Player</h2>
               <audio autoPlay controls src={`audio/${audio}`} />
             </div>
-          )} */}
+          )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
             <div className="flex space-x-4 mt-10 text-left">
               <p className="p-10 text-2xl text-left whitespace-pre-wrap">

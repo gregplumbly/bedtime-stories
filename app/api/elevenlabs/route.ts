@@ -32,8 +32,8 @@ export async function POST(request: Request) {
     const buffer = Buffer.from(arrayBuffer);
     const file = Math.random().toString(36).substring(7);
 
-    fs.writeFile(path.join("public", "audio", `${file}.mp3`), buffer, () => {
-      console.log("File written successfully");
+    fs.writeFile(path.join(`/tmp/${file}.mp3`), buffer, () => {
+      console.log("File written successfully to /tmp");
     });
 
     return new Response(JSON.stringify({ file: `${file}.mp3` }));
