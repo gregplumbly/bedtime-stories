@@ -38,6 +38,6 @@ export async function POST(request: Request) {
 
     return new Response(JSON.stringify({ file: `${file}.mp3` }));
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }));
+    return new Response(error.message, { status: 500 });
   }
 }
