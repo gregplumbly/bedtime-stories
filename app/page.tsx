@@ -208,7 +208,7 @@ export default function IndexPage() {
           {showAudio && (
             <div>
               <h2>Audio Player</h2>
-              <audio autoPlay controls src={`audio/${audio}`} />
+              <audio autoPlay controls src={`/tmp/${audio}`} />
             </div>
           )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
