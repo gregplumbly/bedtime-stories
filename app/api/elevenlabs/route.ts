@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 export async function POST(request: Request) {
+  console.log("fetching elevenlabs api");
   const { message, voice } = await request.json();
 
   try {
@@ -32,9 +33,13 @@ export async function POST(request: Request) {
     const buffer = Buffer.from(arrayBuffer);
     const file = Math.random().toString(36).substring(7);
 
-    fs.writeFile(path.join("public", "audio", `${file}.mp3`), buffer, () => {
-      console.log("File written successfully");
-    });
+    // fs.writeFile(`/tmp/${file}.mp3`, buffer, () => {
+    //   console.log("file has been written to /tmp");
+    // });
+
+    // const buffer = Buffer.from(file);
+
+    fs.createWriteStream(`/tmp/${file}.mp3`).write(file);
 
     return new Response(JSON.stringify({ file: `${file}.mp3` }));
   } catch (error) {

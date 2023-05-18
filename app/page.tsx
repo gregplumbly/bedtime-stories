@@ -53,7 +53,7 @@ export default function IndexPage() {
     getVoices();
   }, []);
 
-  const prompt = `Create a 500 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
+  const prompt = `Create a 10 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
   useEffect(() => {
     async function generateAudio() {
       const response = await fetch("/api/elevenlabs", {
@@ -207,7 +207,7 @@ export default function IndexPage() {
           {showAudio && (
             <div>
               <h2>Audio Player</h2>
-              <audio autoPlay controls src={`audio/${audio}`} />
+              <audio autoPlay controls src={`/tmp/${audio}`} />
             </div>
           )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
