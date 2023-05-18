@@ -17,7 +17,6 @@ import { Switch } from "@/components/ui/switch";
 import { siteConfig } from "@/config/site";
 import { Check } from "lucide-react";
 import { BookOpen } from "lucide-react";
-import type { AppProps } from "next/app";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -208,7 +207,7 @@ export default function IndexPage() {
           {showAudio && (
             <div>
               <h2>Audio Player</h2>
-              <audio autoPlay controls src={`/tmp/${audio}`} />
+              <audio autoPlay controls src={`audio/${audio}`} />
             </div>
           )}
           <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
