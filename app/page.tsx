@@ -15,6 +15,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { siteConfig } from "@/config/site";
+import va from "@vercel/analytics";
 import { Analytics } from "@vercel/analytics/react";
 import { BookOpen } from "lucide-react";
 import { Check } from "lucide-react";
@@ -83,6 +84,7 @@ export default function IndexPage() {
     e.preventDefault();
     // setResponse("");
     // setLoading(true);
+    va.track("Story", { age: ageInput, interests: interestInput });
 
     const response = await fetch("/api/generate-story", {
       method: "POST",
