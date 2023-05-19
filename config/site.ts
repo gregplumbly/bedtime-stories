@@ -16,6 +16,11 @@ export const siteConfig = {
       title: "Contact",
       href: "/contact",
     },
+    ,
+    {
+      title: "Privacy Policy",
+      href: "/privacy",
+    },
   ],
   links: {},
 };
