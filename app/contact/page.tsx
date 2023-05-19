@@ -1,3 +1,3 @@
 export default function Page() {
-  return <p>greg at plumbly.com</p>;
+  return <p className="ml-8 mt-2">greg at plumbly.com</p>;
 }
