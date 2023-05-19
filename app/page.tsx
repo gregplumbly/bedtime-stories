@@ -15,8 +15,8 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { siteConfig } from "@/config/site";
-import { Check } from "lucide-react";
 import { BookOpen } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
