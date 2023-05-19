@@ -15,6 +15,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/react";
 import { BookOpen } from "lucide-react";
 import { Check } from "lucide-react";
 import Link from "next/link";
@@ -219,6 +220,7 @@ export default function IndexPage() {
           </div>
         </section>
       </div>
+      <Analytics />
     </>
     //   <Checkbox />
   );
