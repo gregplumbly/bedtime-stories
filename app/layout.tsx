@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { roboto_slab } from "@/styles/fonts";
+import { nunito } from "@/styles/fonts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased ",
-            roboto_slab
+            nunito
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

@@ -1,6 +1,5 @@
 "use client";
 
-import { roboto_slab } from "../styles/fonts";
 import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,24 +35,24 @@ export default function IndexPage() {
   const [audio, setAudio] = useState(null);
   const [showAudio, setShowAudio] = useState(false);
 
-  useEffect(() => {
-    async function getVoices() {
-      try {
-        const response = await fetch("https://api.elevenlabs.io/v1/voices");
+  //   useEffect(() => {
+  //     async function getVoices() {
+  //       try {
+  //         const response = await fetch("https://api.elevenlabs.io/v1/voices");
 
-        if (!response.ok) {
-          throw new Error("Something went wrong");
-        }
+  //         if (!response.ok) {
+  //           throw new Error("Something went wrong");
+  //         }
 
-        const data = await response.json();
+  //         const data = await response.json();
 
-        setVoices(data.voices);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    getVoices();
-  }, []);
+  //         setVoices(data.voices);
+  //       } catch (error) {
+  //         console.log(error.message);
+  //       }
+  //     }
+  //     getVoices();
+  //   }, []);
 
   const prompt = `Create a 500 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
   //   useEffect(() => {
@@ -125,7 +124,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="text-4xl text-center my-4 md:text-7xl">
+      <h1 className="text-4xl text-center my-4 md:text-7xl ">
         Personalised bedtime stories
       </h1>
       <div className="flex flex-col sm:flex-row ml-4">

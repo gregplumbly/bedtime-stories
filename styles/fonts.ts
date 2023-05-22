@@ -1,3 +1,3 @@
-import { Roboto_Slab } from "@next/font/google";
+import { Nunito } from "@next/font/google";
 
-export const roboto_slab = Roboto_Slab({ subsets: ["latin"], weight: "600" });
+export const nunito = Nunito({ subsets: ["latin"], weight: "600" });
