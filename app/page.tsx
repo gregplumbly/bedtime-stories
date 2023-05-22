@@ -125,7 +125,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="text-2xl text-center ml-8 my-4">
+      <h1 className="text-4xl text-center my-4 md:text-7xl">
         Personalised bedtime stories
       </h1>
       <div className="flex flex-col sm:flex-row ml-4">
