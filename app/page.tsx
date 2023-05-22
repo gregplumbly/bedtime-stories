@@ -84,7 +84,11 @@ export default function IndexPage() {
     e.preventDefault();
     setStory("");
     setLoading(true);
-    va.track("Story", { age: ageInput, interests: interestInput });
+    va.track("Story", {
+      age: ageInput,
+      interests: interestInput,
+      style: storyStyle,
+    });
     console.log(prompt);
 
     const response = await fetch("/api/generate-story", {
