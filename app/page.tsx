@@ -185,9 +185,6 @@ export default function IndexPage() {
                     <SelectItem key="4" value="Onomatopoeia">
                       Onomatopoeia
                     </SelectItem>
-                    <SelectItem key="5" value="Alliteration">
-                      Alliteration
-                    </SelectItem>
                     <SelectItem key="6" value="Narrative Poetry">
                       Narrative Poetry
                     </SelectItem>
