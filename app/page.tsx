@@ -56,29 +56,29 @@ export default function IndexPage() {
   }, []);
 
   const prompt = `Create a 500 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
-  useEffect(() => {
-    async function generateAudio() {
-      const response = await fetch("/api/elevenlabs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: story,
-          voice: "21m00Tcm4TlvDq8ikWAM",
-        }),
-      });
+  //   useEffect(() => {
+  //     async function generateAudio() {
+  //       const response = await fetch("/api/elevenlabs", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           message: story,
+  //           voice: "21m00Tcm4TlvDq8ikWAM",
+  //         }),
+  //       });
 
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
+  //       if (!response.ok) {
+  //         throw new Error("Something went wrong");
+  //       }
 
-      const { file } = await response.json();
+  //       const { file } = await response.json();
 
-      setAudio(file);
-    }
-    generateAudio();
-  }, [showAudio]);
+  //       setAudio(file);
+  //     }
+  //     generateAudio();
+  //   }, [showAudio]);
 
   const generateStory = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -190,7 +190,7 @@ export default function IndexPage() {
               {!loading ? (
                 <Button
                   onClick={(e) => generateStory(e)}
-                  className="mt-4 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
+                  className="mt-4 p-4 px-8 rounded-full shadow-lg bg-cyan-500 duration-200 hover:opacity-80"
                 >
                   <BookOpen className="mr-2 h-4 w-4" /> Generate a story
                 </Button>
