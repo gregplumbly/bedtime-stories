@@ -34,6 +34,7 @@ export default function IndexPage() {
   const [audioSrc, setAudioSrc] = useState("");
   const [audio, setAudio] = useState(null);
   const [showAudio, setShowAudio] = useState(false);
+  const [storyStyle, setStoryStyle] = useState("rhyming verse");
 
   //   useEffect(() => {
   //     async function getVoices() {
@@ -54,7 +55,7 @@ export default function IndexPage() {
   //     getVoices();
   //   }, []);
 
-  const prompt = `Create a 500 word personalised bedtime story in the style of Julia Donaldson for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
+  const prompt = `Create a 500 word personalised 5 minute bedtime story in the ${storyStyle} style for a child named ${nameInput} who is interested in ${interestInput}. The story should be suitable for a ${ageInput} year old`;
   //   useEffect(() => {
   //     async function generateAudio() {
   //       const response = await fetch("/api/elevenlabs", {
@@ -81,9 +82,10 @@ export default function IndexPage() {
 
   const generateStory = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // setResponse("");
-    // setLoading(true);
+    setStory("");
+    setLoading(true);
     va.track("Story", { age: ageInput, interests: interestInput });
+    console.log(prompt);
 
     const response = await fetch("/api/generate-story", {
       method: "POST",
@@ -119,6 +121,7 @@ export default function IndexPage() {
     if (done) {
       console.log("Stream complete");
       //   setShowAudio(true);
+      setLoading(false);
     }
   };
 
@@ -140,7 +143,10 @@ export default function IndexPage() {
                 onChange={(e) => setNameInput(e.target.value)}
               />
               <div className="grid w-full max-w-sm items-center gap-1.5 mt-2 ">
-                <Label htmlFor="age">Child's age</Label>
+                <Label htmlFor="age">
+                  {nameInput ? `${nameInput}'s age` : "Child's age"}
+                </Label>
+
                 <Input
                   className="border"
                   type="number"
@@ -159,6 +165,37 @@ export default function IndexPage() {
                   value={interestInput}
                   onChange={(e) => setInterestInput(e.target.value)}
                 />
+              </div>
+              <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
+                <Label htmlFor="style">Style</Label>
+                <Select onValueChange={(value) => setStoryStyle(value)}>
+                  <SelectTrigger className="">
+                    <SelectValue placeholder="Select story style" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem key="1" value="Rhyming Verse">
+                      Rhyming Verse
+                    </SelectItem>
+                    <SelectItem key="2" value="Repetition">
+                      Repetition
+                    </SelectItem>
+                    <SelectItem key="3" value="Prose">
+                      Prose
+                    </SelectItem>
+                    <SelectItem key="4" value="Onomatopoeia">
+                      Onomatopoeia
+                    </SelectItem>
+                    <SelectItem key="5" value="Alliteration">
+                      Alliteration
+                    </SelectItem>
+                    <SelectItem key="6" value="Narrative Poetry">
+                      Narrative Poetry
+                    </SelectItem>
+                    <SelectItem key="7" value="iambic pentameter">
+                      Iambic Pentameter
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               {/* <div className="flex items-center space-x-2 mt-2">
                 <Switch
@@ -199,7 +236,7 @@ export default function IndexPage() {
                   className="w-full rounded-xl bg-neutral-900 px-4 py-2 font-medium text-white"
                 >
                   <div className="animate-pulse font-bold tracking-widest">
-                    ...
+                    ...generating
                   </div>
                 </button>
               )}
