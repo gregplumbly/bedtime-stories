@@ -128,8 +128,8 @@ export default function IndexPage() {
       <h1 className="text-2xl text-center ml-8 my-4">
         Personalised bedtime stories
       </h1>
-      <div className="flex flex-col sm:flex-row ml-4 bg-slate-100">
-        <div className="mt-4 bg-fuchsia-300 p-6 m-6 sm:w-1/2 ">
+      <div className="flex flex-col sm:flex-row ml-4 ">
+        <div className="mt-4 p-6 m-6 sm:w-1/2 ">
           <form>
             <div className="grid max-w-sm items-center gap-1.5 ">
               <Label htmlFor="name">Child's name</Label>
