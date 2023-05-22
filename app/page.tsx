@@ -128,10 +128,10 @@ export default function IndexPage() {
       <h1 className="text-2xl text-center ml-8 my-4">
         Personalised bedtime stories
       </h1>
-      <div className="flex flex-col mx-auto ml-4 mr-4">
-        <section className="mt-4 ">
+      <div className="flex flex-col sm:flex-row ml-4 bg-slate-100">
+        <div className="mt-4 bg-fuchsia-300 p-6 m-6 sm:w-1/2 ">
           <form>
-            <div className="grid w-full max-w-sm items-center gap-1.5 ">
+            <div className="grid max-w-sm items-center gap-1.5 ">
               <Label htmlFor="name">Child's name</Label>
               <Input
                 className="border"
@@ -213,14 +213,14 @@ export default function IndexPage() {
               <audio autoPlay controls src={`audio/${audio}`} />
             </div>
           )} */}
-          <div className="mt-8 mx-auto ml-1 max-w-sm  flex flex-col h-screen rounded-lg">
-            <div className="flex space-x-4 mt-10 text-left">
-              <p className="p-10 text-2xl text-left whitespace-pre-wrap">
-                {story}
-              </p>
-            </div>
+        </div>
+        <div className="">
+          <div className="flex mt-4 text-left">
+            <p className="p-4 text-2xl text-left whitespace-pre-wrap">
+              {story}
+            </p>
           </div>
-        </section>
+        </div>
       </div>
       <Analytics />
     </>
