@@ -128,10 +128,10 @@ export default function IndexPage() {
       <h1 className="text-2xl text-center ml-8 my-4">
         Personalised bedtime stories
       </h1>
-      <div className="flex flex-col sm:flex-row ml-4 ">
-        <div className="mt-4 p-6 m-6 sm:w-1/2 ">
+      <div className="flex flex-col sm:flex-row ml-4">
+        <div className="mt-4 p-6 m-6 md:w-1/3">
           <form>
-            <div className="grid max-w-sm items-center gap-1.5 ">
+            <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="name">Child's name</Label>
               <Input
                 className="border"
@@ -190,7 +190,7 @@ export default function IndexPage() {
               {!loading ? (
                 <Button
                   onClick={(e) => generateStory(e)}
-                  className="mt-4 bg-fuchsia-500 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
+                  className="mt-4 border-b-4 border-r-4 border-black rounded-lg shadow-lg "
                 >
                   <BookOpen className="mr-2 h-4 w-4" /> Generate a story
                 </Button>
@@ -214,7 +214,7 @@ export default function IndexPage() {
             </div>
           )} */}
         </div>
-        <div className="">
+        <div className="text-left max-w-xl">
           <div className="flex mt-4 text-left">
             <p className="p-4 text-2xl text-left whitespace-pre-wrap">
               {story}
