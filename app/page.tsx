@@ -131,9 +131,15 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1 className="text-4xl text-center my-4 md:text-7xl ">
-        Personalised bedtime stories
+      <h1 className="text-4xl text-center my-4 md:text-2xl ">
+        Bringing Magic to Bedtime - Personalized Stories, Imagined Just for Your
+        Little One.
       </h1>
+      <p className="px-16">
+        Experience a new era of bedtime stories. Created on-the-spot by the
+        power of advanced AI, our unique tales are designed to inspire, comfort,
+        and entertain, all tailored to your child's individual world.
+      </p>
       <div className="flex flex-col sm:flex-row ml-4">
         <div className="mt-4 p-6 m-6 md:w-1/3">
           <form>

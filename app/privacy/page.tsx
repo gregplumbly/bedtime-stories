@@ -1,6 +1,7 @@
 export default function Page() {
   return (
     <div>
+      <h1 className="text-4xl text-center my-4 md:text-7xl ">Privacy policy</h1>
       <p className="ml-8 mt-2">This is a hobby project.</p>
       <p className="ml-8">
         There is minimal logging used only for fixing bugs. No information is
