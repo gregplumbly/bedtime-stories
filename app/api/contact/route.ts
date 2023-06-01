@@ -1,9 +1,9 @@
+import supabase from "@/app/utils/supabase";
 import { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   const { first_name, last_name, email, message } = await req.json();
-  console.log(req);
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -28,5 +28,12 @@ export async function POST(req: NextRequest) {
   transporter.sendMail(mailData, function (err, info) {
     if (err) console.log(err);
     // else console.log(info);
+  });
+
+  const { error } = await supabase.from("contacts").insert({
+    first_name: first_name,
+    last_name: last_name,
+    message: message,
+    email: email,
   });
 }
